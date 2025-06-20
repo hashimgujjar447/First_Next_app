@@ -18,26 +18,24 @@ export default function Home() {
         </div>
 
         <div className="hidden md:flex items-center space-x-8">
-          <Link href="/" className="hover:text-[#FF5733] transition-colors">
+          <Link
+            href="/"
+            className="hover:text-[#FF5733] font-semibold transition-colors"
+          >
             Home
           </Link>
-          <Link
-            href="/about"
-            className="hover:text-[#FF5733] transition-colors"
-          >
-            About
-          </Link>
+
           <div className="relative group">
             <Link
               href="/services"
-              className="hover:text-[#FF5733] transition-colors"
+              className="hover:text-[#FF5733] font-semibold  transition-colors"
             >
-              Services
+              About
             </Link>
             <div className="absolute left-0 mt-2 w-36 bg-[#1A1A1A] rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
               <Link
                 href="/services/lenka"
-                className="block px-4 py-2 hover:bg-[#252525]"
+                className="block px-4 py-2  hover:bg-[#252525]"
               >
                 Lenka
               </Link>
@@ -56,8 +54,14 @@ export default function Home() {
             </div>
           </div>
           <Link
+            href="/about"
+            className="hover:text-[#FF5733] font-semibold  transition-colors"
+          >
+            Services
+          </Link>
+          <Link
             href="/contact"
-            className="hover:text-[#FF5733] transition-colors"
+            className="hover:text-[#FF5733] font-semibold  transition-colors"
           >
             Contact
           </Link>
@@ -133,7 +137,8 @@ export default function Home() {
                       key={i}
                       className="mx-4 text-xs text-black font-bold tracking-widest opacity-70"
                     >
-                      <span className="text-[#F15C36]">.</span> DEDICATION
+                      <span className="text-[#F15C36] w-6 h-6">.</span>{" "}
+                      DEDICATION
                     </span>
                   ))}
               </div>
@@ -174,26 +179,55 @@ export default function Home() {
             </p>
             <div className="space-y-4 mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#FF5733] flex items-center justify-center">
-                  <Check className="w-4 h-4 text-white" />
+                <div className="w-10 h-10 ">
+                  <div className="relative">
+                    <img src="/landingPage/circle.png" alt="Circle" />
+                    <img
+                      src="/landingPage/tick (1).png"
+                      alt="Tick"
+                      className="absolute -top-2 left-2"
+                    />
+                  </div>
                 </div>
                 <span>Certified Personal Trainer</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#FF5733] flex items-center justify-center">
-                  <Check className="w-4 h-4 text-white" />
+                <div className="w-10 h-10 ">
+                  <div className="relative">
+                    <img src="/landingPage/circle.png" alt="Circle" />
+                    <img
+                      src="/landingPage/tick (1).png"
+                      alt="Tick"
+                      className="absolute -top-2 left-2"
+                    />
+                  </div>
                 </div>
                 <span>Customized Workout & Diet Plans</span>
               </div>
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#FF5733] flex items-center justify-center">
-                  <Check className="w-4 h-4 text-white" />
+                <div className="w-10 h-10 ">
+                  <div className="relative">
+                    <img src="/landingPage/circle.png" alt="Circle" />
+                    <img
+                      src="/landingPage/tick (1).png"
+                      alt="Tick"
+                      className="absolute -top-2 left-2"
+                    />
+                  </div>
                 </div>
                 <span>100+ Client Transformations</span>
               </div>
+
               <div className="flex items-center gap-3">
-                <div className="w-6 h-6 rounded-full bg-[#FF5733] flex items-center justify-center">
-                  <Check className="w-4 h-4 text-white" />
+                <div className="w-10 h-10 ">
+                  <div className="relative">
+                    <img src="/landingPage/circle.png" alt="Circle" />
+                    <img
+                      src="/landingPage/tick (1).png"
+                      alt="Tick"
+                      className="absolute -top-2 left-2"
+                    />
+                  </div>
                 </div>
                 <span>Train Anytime, Anywhere</span>
               </div>
@@ -226,10 +260,46 @@ export default function Home() {
                   personalized fitness plans.
                 </p>
               </div>
-              <ul className="text-[17.59px] text-white pl-5 space-y-2">
-                <li>European Certified Personal Trainer / REPs UAE</li>
-                <li>Powerlifter️ - 52kg IPF</li>
-                <li>Strength Coach</li>
+              <ul className="text-[17.59px] text-white  space-y-4">
+                <li className="flex items-center gap-2">
+                  <div className="w-10 h-10 ">
+                    <div className="relative">
+                      <img src="/landingPage/circle.png" alt="Circle" />
+                      <img
+                        src="/landingPage/vector 9.png"
+                        alt="Tick"
+                        className="absolute -top-1 left-3"
+                      />
+                    </div>
+                  </div>
+                  European Certified Personal Trainer / REPs UAE
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-10 h-10 ">
+                    <div className="relative">
+                      <img src="/landingPage/circle.png" alt="Circle" />
+                      <img
+                        src="/landingPage/vector 9.png"
+                        alt="Tick"
+                        className="absolute -top-1 left-3"
+                      />
+                    </div>
+                  </div>
+                  Powerlifter️ - 52kg IPF
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-10 h-10 ">
+                    <div className="relative">
+                      <img src="/landingPage/circle.png" alt="Circle" />
+                      <img
+                        src="/landingPage/vector 9.png"
+                        alt="Tick"
+                        className="absolute -top-1 left-3"
+                      />
+                    </div>
+                  </div>
+                  Strength Coach
+                </li>
               </ul>
             </div>
 
@@ -284,7 +354,7 @@ export default function Home() {
       <section className="py-10 px-6">
         <TestimonialSection />
       </section>
-      <section className="py-10 px-6">
+      <section className="py-10 px-6 bg-[#272727]">
         <MultiStepOnboarding />
       </section>
       {/* Footer Section */}

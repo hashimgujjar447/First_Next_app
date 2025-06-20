@@ -1,6 +1,47 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { METHODS } from "http";
 
+interface FormData {
+  email: string;
+  password: string;
+}
 export default function LoginUpForm() {
+  const [loginForm, setLoginForm] = useState<FormData>({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState<String>("");
+  const router = useRouter();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginForm),
+      });
+
+      const data = await response.json();
+      console.log("Response data:", data);
+      if (!response.ok || !data.success) {
+        setError(data.message || "Login failed");
+        setLoginForm({
+          email: "",
+          password: "",
+        });
+      } else {
+        console.log("Login successful:", data);
+        router.push("/");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    }
+  };
   return (
     <div className="min-h-screen relative bg-[#0b0b0f] w-full flex  flex-col items-center   text-white px-4">
       <div className="absolute top-0 left-1 w-[300px] h-[300px] bg-[url('/images/topLeftGlow.png')] bg-no-repeat bg-cover z-0 pointer-events-none">
@@ -21,7 +62,7 @@ export default function LoginUpForm() {
           Sign in to your dashboard & start tracking your analytics.
         </p>
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label
               htmlFor="email"
@@ -32,6 +73,10 @@ export default function LoginUpForm() {
             <input
               type="email"
               id="email"
+              value={loginForm.email}
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, email: e.target.value })
+              }
               placeholder="example@email.com"
               className="w-full px-4 py-2 rounded-md bg-[#19161C] text-white/25 border border-[#343B4F] focus:outline-none "
             />
@@ -47,6 +92,10 @@ export default function LoginUpForm() {
             <input
               type="password"
               id="password"
+              value={loginForm.password}
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, password: e.target.value })
+              }
               placeholder="At least 8 characters"
               className="w-full px-4 py-2 rounded-md bg-[#19161C] text-white/25 border border-[#343B4F]  focus:outline-none "
             />

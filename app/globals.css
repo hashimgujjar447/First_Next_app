@@ -47,3 +47,15 @@ body {
 }
 
 /* Adding goals image back div */
+.custom-dashed-border {
+  border-style: dashed;
+  border-width: 2px;
+  border-image: repeating-linear-gradient(
+    to right,
+    black 0,
+    black 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  border-image-slice: 1;
+}

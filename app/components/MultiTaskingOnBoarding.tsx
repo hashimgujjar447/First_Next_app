@@ -1,15 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  Briefcase,
-  Code,
-  Palette,
-  Heart,
-  Zap,
-  Target,
-  Clock,
-} from "lucide-react";
+import { Briefcase, Code, Palette, Heart } from "lucide-react";
 
 interface FormData {
   fullName: string;
@@ -17,6 +9,7 @@ interface FormData {
   email: string;
   interest: string;
   workoutType: string;
+  bodyType: string;
 }
 
 export default function MultiStepOnboarding() {
@@ -27,9 +20,13 @@ export default function MultiStepOnboarding() {
     email: "",
     interest: "",
     workoutType: "",
+    bodyType: "",
   });
 
-  const totalSteps = 3;
+  const totalSteps = 5;
+  const handleInputChange = (field: keyof FormData, value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
   const handleNext = () => {
     if (currentStep < totalSteps) {
@@ -43,43 +40,51 @@ export default function MultiStepOnboarding() {
     }
   };
 
-  const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
+  const handleComplete = () => {
+    console.log("Form submitted:", formData);
+    alert("Onboarding completed!");
+    setFormData({
+      fullName: "",
+      lastName: "",
+      email: "",
+      interest: "",
+      workoutType: "",
+      bodyType: "",
+    });
+    setCurrentStep(1);
   };
 
   const isStep1Valid = formData.fullName && formData.lastName && formData.email;
-  const isStep2Valid = formData.interest;
-  const isStep3Valid = formData.workoutType;
+  const isStep2Valid = formData.interest !== "";
+  const isStep3Valid = formData.workoutType !== "";
+  const isStep4Valid = formData.bodyType !== "";
 
   return (
-    <div className="min-h-screen  flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-gray-800 border border-gray-700 rounded-lg shadow-lg p-8">
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="w-full p-8 bg-[url('/landingPage/Rectangle10.png')] bg-[length:100%_100%]  bg-center  ">
         {/* Step 1 */}
         {currentStep === 1 && (
-          <div className="space-y-6">
-            <div className="text-center">
-              <h2 className="text-xl font-semibold text-white mb-2">
-                If you're ready to start, get in touch with us! ⭐
+          <div className="space-y-8">
+            <div className="flex justify-between items-center border-b border-white/25 py-6">
+              <h2 className="text-[36px] font-semibold text-white">
+                If you’re ready to start, get in touch with us!👇
               </h2>
-              <p className="text-gray-400 text-sm">01/03</p>
+              <p className="text-white text-[24px]">01/04</p>
             </div>
 
-            <div className="space-y-4">
-              <p className="text-white text-sm">
-                Hi, 👋 What's Your Name & Email?
+            <div className="space-y-4 mt-4 pt-8 border-b border-white/25 pb-20">
+              <p className="text-white text-[20px] font-semibold mb-6">
+                Hi, 👋 what’s your name & Email?
               </p>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 <input
-                  placeholder="Full Name"
+                  placeholder="First Name"
                   value={formData.fullName}
                   onChange={(e) =>
                     handleInputChange("fullName", e.target.value)
                   }
-                  className="bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-md px-3 py-2"
+                  className="bg-transparent border border-white text-white placeholder-gray-400 rounded-md px-3 py-2"
                 />
                 <input
                   placeholder="Last Name"
@@ -87,102 +92,102 @@ export default function MultiStepOnboarding() {
                   onChange={(e) =>
                     handleInputChange("lastName", e.target.value)
                   }
-                  className="bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-md px-3 py-2"
+                  className="bg-transparent border border-white text-white placeholder-gray-400 rounded-md px-3 py-2"
+                />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  className="bg-transparent border border-white text-white placeholder-gray-400 rounded-md px-3 py-2"
                 />
               </div>
-
-              <input
-                type="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={(e) => handleInputChange("email", e.target.value)}
-                className="bg-gray-700 border border-gray-600 text-white placeholder-gray-400 rounded-md px-3 py-2 w-full"
-              />
             </div>
 
-            <button
-              onClick={handleNext}
-              disabled={!isStep1Valid}
-              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md"
-            >
-              Next
-            </button>
+            <div className="flex justify-end">
+              <button
+                type="button"
+                onClick={handleNext}
+                disabled={!isStep1Valid}
+                className="bg-[#F15C36] hover:bg-orange-600 w-[120px] h-[50px] text-white rounded-full disabled:opacity-50"
+              >
+                Next
+              </button>
+            </div>
           </div>
         )}
 
         {/* Step 2 */}
         {currentStep === 2 && (
           <div className="space-y-6">
-            <div className="text-center">
-              <h2 className="text-xl font-semibold text-white mb-2">
+            <div className="flex justify-between items-center border-b border-white/25 py-6">
+              <h2 className="text-[36px] font-semibold text-white">
                 Help us get to know you 😊
               </h2>
-              <p className="text-gray-400 text-sm">02/03</p>
+              <p className="text-gray-400 text-sm">02/04</p>
             </div>
 
-            <div>
-              <p className="text-white text-sm mb-4">
-                Hey {formData.fullName}! 👋 What's Your Main Interest/Goal?
-              </p>
-
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  {
-                    id: "business",
-                    icon: Briefcase,
-                    label: "Business",
-                    color: "text-yellow-400",
-                  },
-                  {
-                    id: "development",
-                    icon: Code,
-                    label: "Development",
-                    color: "text-green-400",
-                  },
-                  {
-                    id: "design",
-                    icon: Palette,
-                    label: "Design",
-                    color: "text-blue-400",
-                  },
-                  {
-                    id: "health",
-                    icon: Heart,
-                    label: "Health & Fitness",
-                    color: "text-red-400",
-                  },
-                ].map((option) => (
-                  <button
-                    key={option.id}
-                    onClick={() => handleInputChange("interest", option.id)}
-                    className={`p-4 rounded-lg border-2 transition-all ${
-                      formData.interest === option.id
-                        ? "border-orange-500 bg-orange-500/10"
-                        : "border-gray-600 hover:border-gray-500"
-                    }`}
-                  >
-                    <option.icon
-                      className={`w-8 h-8 mx-auto mb-2 ${option.color}`}
-                    />
-                    <p className="text-white text-sm text-center">
-                      {option.label}
-                    </p>
-                  </button>
-                ))}
-              </div>
+            <p className="text-white text-[20px] font-semibold mb-6">
+              Hi {formData.fullName},👋 what’s your main fitness goal?
+            </p>
+            <div className="flex justify-center gap-8 border-b border-white/25 pb-4 mb-4">
+              {[
+                {
+                  id: "weight_loss",
+                  icon: Briefcase,
+                  label: "Weight Loss",
+                  color: "text-yellow-400",
+                },
+                {
+                  id: "muscle_gain",
+                  icon: Code,
+                  label: "Muscle Gain",
+                  color: "text-green-400",
+                },
+                {
+                  id: "strength",
+                  icon: Palette,
+                  label: "Strength",
+                  color: "text-blue-400",
+                },
+                {
+                  id: "general_health",
+                  icon: Heart,
+                  label: "General Health",
+                  color: "text-red-400",
+                },
+              ].map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => handleInputChange("interest", option.id)}
+                  className={`w-30 h-30 aspect-square rounded-full  bg-[#191919] transition-all ${
+                    formData.interest === option.id ? " bg-orange-500" : ""
+                  }`}
+                >
+                  <option.icon
+                    className={`w-8 h-8 mx-auto mb-2 ${option.color}`}
+                  />
+                  <p className="text-white text-sm text-center">
+                    {option.label}
+                  </p>
+                </button>
+              ))}
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex justify-between">
               <button
+                type="button"
                 onClick={handleBack}
-                className="flex-1 border border-gray-600 text-white hover:bg-gray-700 py-2 rounded-md"
+                className="border border-gray-600 text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-md"
               >
                 Back
               </button>
               <button
+                type="button"
                 onClick={handleNext}
                 disabled={!isStep2Valid}
-                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md"
+                className="bg-orange-500 hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-md disabled:opacity-50"
               >
                 Next
               </button>
@@ -192,91 +197,199 @@ export default function MultiStepOnboarding() {
 
         {/* Step 3 */}
         {currentStep === 3 && (
-          <div className="space-y-6">
-            <div className="text-center">
-              <h2 className="text-xl font-semibold text-white mb-2">
+          <div className="space-y-8">
+            <div className="flex justify-between items-center border-b border-white/25 py-6">
+              <h2 className="text-[36px] font-semibold text-white">
                 Help us get to know you 😊
               </h2>
-              <p className="text-gray-400 text-sm">03/03</p>
+              <p className="text-white text-[24px]">03/04</p>
             </div>
 
-            <div>
-              <p className="text-white text-sm mb-4">
-                What type of workouts interest you the most? 🏋️
-              </p>
+            <p className="text-white font-semibold text-[20px] mb-8 ">
+              What type of workouts interest you the most? 🤔
+            </p>
+            <div className="flex justify-center gap-6 mb-8 border-b border-white/25 pb-4 ">
+              {[
+                {
+                  id: "cardio",
+                  label: "Cardio",
 
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  {
-                    id: "cardio",
-                    icon: Heart,
-                    label: "Cardio & Endurance",
-                    color: "text-red-400",
-                  },
-                  {
-                    id: "strength",
-                    icon: Zap,
-                    label: "Strength Training",
-                    color: "text-yellow-400",
-                  },
-                  {
-                    id: "flexibility",
-                    icon: Target,
-                    label: "Flexibility & Yoga",
-                    color: "text-green-400",
-                  },
-                  {
-                    id: "hiit",
-                    icon: Clock,
-                    label: "HIIT & Intensity",
-                    color: "text-orange-400",
-                  },
-                ].map((option) => (
+                  bg:
+                    formData.workoutType === "cardio"
+                      ? "bg-orange-500"
+                      : "bg-gray-700",
+                },
+                {
+                  id: "functional",
+                  label: "Functional",
+
+                  bg:
+                    formData.workoutType === "functional"
+                      ? "bg-orange-500"
+                      : "bg-gray-700",
+                },
+                {
+                  id: "yoga",
+                  label: "Yoga",
+
+                  bg:
+                    formData.workoutType === "yoga"
+                      ? "bg-orange-500"
+                      : "bg-gray-700",
+                },
+              ].map((opt) => (
+                <div key={opt.id} className="mr-4">
                   <button
-                    key={option.id}
-                    onClick={() => handleInputChange("workoutType", option.id)}
-                    className={`p-4 rounded-lg border-2 transition-all ${
-                      formData.workoutType === option.id
-                        ? "border-orange-500 bg-orange-500/10"
-                        : "border-gray-600 hover:border-gray-500"
-                    }`}
+                    type="button"
+                    onClick={() => handleInputChange("workoutType", opt.id)}
+                    className={`h-30 w-30 ${opt.bg} rounded-full hover:bg-orange-500/25 transition-all mb-3`}
                   >
-                    <option.icon
-                      className={`w-8 h-8 mx-auto mb-2 ${option.color}`}
-                    />
-                    <p className="text-white text-sm text-center">
-                      {option.label}
-                    </p>
+                    {" "}
+                    <p className="text-white text-xs">{opt.label}</p>
                   </button>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex justify-between gap-3">
               <button
+                type="button"
                 onClick={handleBack}
-                className="flex-1 border border-gray-600 text-white hover:bg-gray-700 py-2 rounded-md"
+                className=" border border-gray-600 text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-lg"
               >
                 Back
               </button>
               <button
-                onClick={() => {
-                  console.log("Form submitted:", formData);
-                  setFormData({
-                    fullName: "",
-                    lastName: "",
-                    email: "",
-                    interest: "",
-                    workoutType: "",
-                  });
-                  setCurrentStep(1);
-                  alert("Onboarding completed!");
-                }}
+                type="button"
+                onClick={handleNext}
                 disabled={!isStep3Valid}
-                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-md"
+                className=" bg-orange-500 hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-lg disabled:opacity-50"
               >
-                Complete
+                Next
               </button>
+            </div>
+          </div>
+        )}
+
+        {/* Step 4 */}
+        {currentStep === 4 && (
+          <div className="space-y-8">
+            <div className="flex justify-between items-center border-b border-white/25 py-6">
+              <h2 className="text-[36px] font-semibold text-white">
+                About your body
+              </h2>
+              <p className="text-white text-[24px]">04/04</p>
+            </div>
+
+            <p className="text-white text-[20px] mb-8 ">
+              Which one best describes your body type?
+            </p>
+            <div className="flex justify-center gap-6 mb-8 border-b border-white/25 pb-4 ">
+              {[
+                {
+                  id: "slim",
+                  label: "Slim",
+
+                  bg:
+                    formData.bodyType === "slim"
+                      ? "bg-orange-500"
+                      : "bg-gray-700",
+                },
+                {
+                  id: "athletic",
+                  label: "Athletic",
+
+                  bg:
+                    formData.bodyType === "athletic"
+                      ? "bg-orange-500"
+                      : "bg-gray-700",
+                },
+                {
+                  id: "curvy",
+                  label: "Curvy",
+
+                  bg:
+                    formData.bodyType === "curvy"
+                      ? "bg-orange-500"
+                      : "bg-gray-700",
+                },
+              ].map((opt) => (
+                <div key={opt.id} className="mr-4">
+                  <button
+                    type="button"
+                    onClick={() => handleInputChange("bodyType", opt.id)}
+                    className={`h-30 w-30 ${opt.bg} rounded-full hover:bg-orange-500/25 transition-all mb-3`}
+                  >
+                    {" "}
+                    <p className="text-white text-xs">{opt.label}</p>
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex justify-between gap-3">
+              <button
+                type="button"
+                onClick={handleBack}
+                className=" border border-gray-600 text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-lg"
+              >
+                Back
+              </button>
+              <button
+                type="button"
+                onClick={handleNext}
+                disabled={!isStep4Valid}
+                className=" bg-orange-500 hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-lg disabled:opacity-50"
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        )}
+        {/* Step 5 - Completion */}
+        {currentStep === 5 && (
+          <div className=" flex items-center justify-center p-4">
+            <div
+              className="
+        w-full              /* full width */
+     
+    
+        rounded-lg          /* optional rounding */
+        p-8
+        "
+            >
+              <div className="text-center space-y-6">
+                <div className="space-y-4">
+                  <h1 className="text-2xl font-semibold text-white">
+                    Thank you for submitting! 🎉
+                  </h1>
+                  <p className="text-gray-300">
+                    We will reach out to you soon. 😊
+                  </p>
+                </div>
+
+                <div className="flex justify-between items-center pt-8">
+                  <button
+                    type="button"
+                    className="border border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white px-8 py-2 rounded"
+                    onClick={() => {
+                      /* handle back if needed */
+                      handleBack();
+                    }}
+                  >
+                    Back
+                  </button>
+                  <button
+                    type="button"
+                    className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-2 rounded"
+                    onClick={() => {
+                      handleComplete();
+                    }}
+                  >
+                    Start Over
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}
