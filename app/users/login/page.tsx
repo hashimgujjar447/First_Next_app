@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { METHODS } from "http";
+import Link from "next/link";
 
 interface FormData {
   email: string;
@@ -101,9 +102,12 @@ export default function LoginUpForm() {
             />
           </div>
 
-          <div className="flex items-center justify-end">
+          <Link
+            href="/users/forgot-password"
+            className="flex items-center justify-end hover:cursor-pointer"
+          >
             <p className="text-sm text-white/50">forget password?</p>
-          </div>
+          </Link>
 
           <button
             type="submit"
