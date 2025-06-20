@@ -109,7 +109,7 @@ export default function MultiStepOnboarding() {
                 type="button"
                 onClick={handleNext}
                 disabled={!isStep1Valid}
-                className="bg-[#F15C36] hover:bg-orange-600 w-[120px] h-[50px] text-white rounded-full disabled:opacity-50"
+                className="bg-[#F15C36] cursor-pointer hover:bg-orange-600 w-[120px] h-[50px] text-white rounded-full disabled:opacity-50"
               >
                 Next
               </button>
@@ -134,25 +134,25 @@ export default function MultiStepOnboarding() {
               {[
                 {
                   id: "weight_loss",
-                  icon: Briefcase,
+                  icon: "🏋️",
                   label: "Weight Loss",
                   color: "text-yellow-400",
                 },
                 {
                   id: "muscle_gain",
-                  icon: Code,
+                  icon: "💪",
                   label: "Muscle Gain",
                   color: "text-green-400",
                 },
                 {
                   id: "strength",
-                  icon: Palette,
+                  icon: "🤸‍♂️",
                   label: "Strength",
                   color: "text-blue-400",
                 },
                 {
                   id: "general_health",
-                  icon: Heart,
+                  icon: "❤️‍🩹",
                   label: "General Health",
                   color: "text-red-400",
                 },
@@ -161,13 +161,15 @@ export default function MultiStepOnboarding() {
                   key={option.id}
                   type="button"
                   onClick={() => handleInputChange("interest", option.id)}
-                  className={`w-30 h-30 aspect-square rounded-full  bg-[#191919] transition-all ${
+                  className={`w-[180px] h-[180px] aspect-square rounded-full  bg-[#191919] transition-all ${
                     formData.interest === option.id ? " bg-orange-500" : ""
                   }`}
                 >
-                  <option.icon
-                    className={`w-8 h-8 mx-auto mb-2 ${option.color}`}
-                  />
+                  <p className="mb-1">
+                    <span className={`text-4xl ${option.color}`}>
+                      {option.icon}
+                    </span>
+                  </p>
                   <p className="text-white text-sm text-center">
                     {option.label}
                   </p>
@@ -179,7 +181,7 @@ export default function MultiStepOnboarding() {
               <button
                 type="button"
                 onClick={handleBack}
-                className="border border-gray-600 text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-md"
+                className="border border-gray-600 cursor-pointer text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-md"
               >
                 Back
               </button>
@@ -187,7 +189,7 @@ export default function MultiStepOnboarding() {
                 type="button"
                 onClick={handleNext}
                 disabled={!isStep2Valid}
-                className="bg-orange-500 hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-md disabled:opacity-50"
+                className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-md disabled:opacity-50"
               >
                 Next
               </button>
@@ -212,40 +214,40 @@ export default function MultiStepOnboarding() {
               {[
                 {
                   id: "cardio",
-                  label: "Cardio",
+                  label: "Cardio & Endurance",
 
                   bg:
                     formData.workoutType === "cardio"
                       ? "bg-orange-500"
-                      : "bg-gray-700",
+                      : "bg-[#191919]",
                 },
                 {
                   id: "functional",
-                  label: "Functional",
+                  label: "Functional Fitness",
 
                   bg:
                     formData.workoutType === "functional"
                       ? "bg-orange-500"
-                      : "bg-gray-700",
+                      : "bg-[#191919]",
                 },
                 {
                   id: "yoga",
-                  label: "Yoga",
+                  label: "Yoga & Flexibility",
 
                   bg:
                     formData.workoutType === "yoga"
                       ? "bg-orange-500"
-                      : "bg-gray-700",
+                      : "bg-[#191919]",
                 },
               ].map((opt) => (
                 <div key={opt.id} className="mr-4">
                   <button
                     type="button"
                     onClick={() => handleInputChange("workoutType", opt.id)}
-                    className={`h-30 w-30 ${opt.bg} rounded-full hover:bg-orange-500/25 transition-all mb-3`}
+                    className={`h-[180px] hover:cursor-pointer ${opt.bg} w-[180px]  rounded-full hover:bg-orange-500/25 transition-all mb-3`}
                   >
                     {" "}
-                    <p className="text-white text-xs">{opt.label}</p>
+                    <p className="text-white text-[16px]">{opt.label}</p>
                   </button>
                 </div>
               ))}
@@ -255,7 +257,7 @@ export default function MultiStepOnboarding() {
               <button
                 type="button"
                 onClick={handleBack}
-                className=" border border-gray-600 text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-lg"
+                className=" border border-gray-600 cursor-pointer text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-lg"
               >
                 Back
               </button>
@@ -263,7 +265,7 @@ export default function MultiStepOnboarding() {
                 type="button"
                 onClick={handleNext}
                 disabled={!isStep3Valid}
-                className=" bg-orange-500 hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-lg disabled:opacity-50"
+                className=" bg-orange-500 cursor-pointer hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-lg disabled:opacity-50"
               >
                 Next
               </button>
@@ -293,7 +295,7 @@ export default function MultiStepOnboarding() {
                   bg:
                     formData.bodyType === "slim"
                       ? "bg-orange-500"
-                      : "bg-gray-700",
+                      : "bg-[#191919]",
                 },
                 {
                   id: "athletic",
@@ -302,7 +304,7 @@ export default function MultiStepOnboarding() {
                   bg:
                     formData.bodyType === "athletic"
                       ? "bg-orange-500"
-                      : "bg-gray-700",
+                      : "bg-[#191919]",
                 },
                 {
                   id: "curvy",
@@ -311,14 +313,14 @@ export default function MultiStepOnboarding() {
                   bg:
                     formData.bodyType === "curvy"
                       ? "bg-orange-500"
-                      : "bg-gray-700",
+                      : "bg-[#191919]",
                 },
               ].map((opt) => (
                 <div key={opt.id} className="mr-4">
                   <button
                     type="button"
                     onClick={() => handleInputChange("bodyType", opt.id)}
-                    className={`h-30 w-30 ${opt.bg} rounded-full hover:bg-orange-500/25 transition-all mb-3`}
+                    className={`h-[180px] w-[180px] ${opt.bg} rounded-full hover:bg-orange-500/25 transition-all mb-3`}
                   >
                     {" "}
                     <p className="text-white text-xs">{opt.label}</p>
@@ -331,7 +333,7 @@ export default function MultiStepOnboarding() {
               <button
                 type="button"
                 onClick={handleBack}
-                className=" border border-gray-600 text-white hover:bg-gray-700 w-[120px] h-[50px] rounded-lg"
+                className=" border-2 border-[#F15C36] text-white cursor-pointer hover:bg-gray-700 w-[120px] h-[50px] rounded-full"
               >
                 Back
               </button>
@@ -339,7 +341,7 @@ export default function MultiStepOnboarding() {
                 type="button"
                 onClick={handleNext}
                 disabled={!isStep4Valid}
-                className=" bg-orange-500 hover:bg-orange-600 text-white w-[120px] h-[50px] rounded-lg disabled:opacity-50"
+                className=" bg-[#F15C36]  hover:bg-orange-600 cursor-pointer text-white w-[120px] h-[50px] rounded-full disabled:opacity-50"
               >
                 Done
               </button>

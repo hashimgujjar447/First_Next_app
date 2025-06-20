@@ -55,16 +55,11 @@ export default function ServicesSection() {
           </h1>
 
           {/* Decorative curved line */}
-          <div className="absolute top-0 right-0 w-96 h-32 hidden lg:block">
-            <svg viewBox="0 0 400 120" className="w-full h-full" fill="none">
-              <path
-                d="M50 20 Q200 10 350 60 L360 70 Q210 20 60 30 Z"
-                stroke="#f97316"
-                strokeWidth="3"
-                fill="none"
-              />
-              <circle cx="360" cy="20" r="12" fill="#f97316" />
-            </svg>
+          <div className="absolute top-0 right-52 w-96 h-32 hidden lg:block">
+            <img
+              src={"/landingPage/arrowLeftDown.png"}
+              alt="Decorative Arrow"
+            />
           </div>
         </div>
 
@@ -89,10 +84,13 @@ export default function ServicesSection() {
           </div>
 
           {/* Center Column - Arrows */}
-          <div className="hidden border-x-1 border-white/25 lg:flex flex-col items-center justify-center space-y-16 py-8">
+          <div className="hidden border-x-1 border-white/25 lg:flex flex-col items-center justify-center space-y-22 py-12">
             {[1, 2, 3].map((_, index) => (
               <div key={index}>
-                <ArrowDown key={index} className="w-8 h-8 text-orange-500 " />
+                <img
+                  src="/landingPage/serviceArrowDown.png"
+                  alt="service arrow down"
+                />
               </div>
             ))}
           </div>
@@ -118,7 +116,7 @@ export default function ServicesSection() {
 
         {/* Learn More Button */}
         <div className="flex justify-center mt-16">
-          <button className="border-2 border-dashed border-orange-500 text-orange-500 bg-transparent hover:bg-orange-500 hover:text-white px-8 py-3 text-lg font-medium rounded-lg transition-all duration-300">
+          <button className="border-2 border-dashed cursor-pointer border-orange-500 text-white bg-transparent hover:bg-orange-500 hover:text-white px-8 py-3 text-lg font-medium rounded-lg transition-all duration-300">
             Learn More
           </button>
         </div>

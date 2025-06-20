@@ -76,7 +76,7 @@ const TestimonialSection = () => {
               <img
                 src={person.image}
                 alt={person.title}
-                className="rounded-md w-[400px] h-[500px] "
+                className="rounded-md w-[400px] h-[600px] "
               />
 
               <div className="flex flex-col justify-start mt-5 items-start text-white">
@@ -110,7 +110,7 @@ const TestimonialSection = () => {
                 <button
                   onClick={handleClickRight}
                   aria-label="Previous Testimonial"
-                  className="rounded-full border-2 border-white bg-transparent text-white w-20 h-10 flex items-center justify-center"
+                  className="rounded-full border-2 border-white bg-transparent text-white w-[110px] h-[40px] flex items-center justify-center"
                 >
                   <MoveLeft className="w-4 h-4" />
                 </button>
@@ -119,7 +119,7 @@ const TestimonialSection = () => {
                 <button
                   onClick={handleClickNext}
                   aria-label="Next Testimonial"
-                  className="rounded-full border-2 border-white bg-transparent text-white w-20 h-10 flex items-center justify-center"
+                  className="rounded-full border-2 border-white bg-transparent text-white w-[110px] h-[40px] flex items-center justify-center"
                 >
                   <MoveRight className="w-4 h-4" />
                 </button>

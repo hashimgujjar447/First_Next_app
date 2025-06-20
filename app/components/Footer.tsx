@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <footer className=" text-white py-12 px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 justify-center lg:grid-cols-4 gap-12 mb-12">
           {/* Logo and Social Media Section */}
-          <div className="space-y-6">
+          <div className="space-y-6  ">
             <div>
               <Image
                 src="/landingPage/Logo.png"
@@ -18,7 +18,7 @@ export default function Footer() {
               />
             </div>
 
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 mb-12 pb-10">
               <a
                 href="#"
                 className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-200 transition-colors"
@@ -64,14 +64,17 @@ export default function Footer() {
                   className="ml-4 text-orange-500 hover:text-orange-400 transition-colors"
                   aria-label="Subscribe"
                 >
-                  <ArrowRight className="w-5 h-5" />
+                  <img
+                    src="/landingPage/topRightCornerArrow.png"
+                    alt="top right arrow"
+                  />
                 </button>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="mt-10">
             <h3 className="text-lg font-semibold mb-6 text-white">
               Quick links
             </h3>
@@ -112,7 +115,7 @@ export default function Footer() {
           </div>
 
           {/* News */}
-          <div>
+          <div className="mt-10">
             <h3 className="text-lg font-semibold mb-6 text-white">News</h3>
             <ul className="space-y-4">
               <li>
@@ -135,7 +138,7 @@ export default function Footer() {
           </div>
 
           {/* Fitness Services */}
-          <div>
+          <div className="mt-10">
             <h3 className="text-lg font-semibold mb-6 text-white">
               Fitness Services
             </h3>
